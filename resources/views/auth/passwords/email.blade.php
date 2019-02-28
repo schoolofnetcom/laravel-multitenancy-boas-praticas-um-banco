@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@php
+    $layout = \Section::get('layout');
+    $routePasswordEmail = \Section::get('password.route_email');
+@endphp
+@extends($layout)
 
 @section('content')
 <div class="container">
@@ -14,7 +18,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" action="{{ route($routePasswordEmail) }}">
                         @csrf
 
                         <div class="form-group row">

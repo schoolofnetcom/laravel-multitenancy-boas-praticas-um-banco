@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
         factory(Product::class, 100)
             ->make()
             ->each(function (Product $product) use ($categories) {
-                $tenantId = rand(1, 2);
+                $tenantId = rand(2, 3);
                 $category = $categories->where('company_id', $tenantId)->random();
                 $product->category_id = $category->id; //2
                 $product->company_id = $tenantId;  //1

@@ -12,6 +12,10 @@ class CompaniesTableSeeder extends Seeder
     public function run()
     {
         \App\Models\Company::create([
+            'name' => 'Empresa Admin'
+        ]);
+
+        \App\Models\Company::create([
             'name' => 'Empresa 1'
         ]);
 

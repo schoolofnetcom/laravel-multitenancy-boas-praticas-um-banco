@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'app_web',
         'passwords' => 'users',
     ],
 
@@ -36,9 +36,14 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'app_web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'tenants',
+        ],
+
+        'admin_web' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
 
         'api' => [
@@ -63,12 +68,24 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
+    // Auth::user() -> User->userTenant - polimorfismo
+//User
+//Relacionamentos - Admin e UserTenant
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => \App\Models\User::class,
         ],
+
+        'admins' => [
+            'driver' => 'admin_provider',
+            'model' => \App\Models\User::class,
+        ],
+
+        'tenants' => [
+            'driver' => 'tenant_provider',
+            'model' => \App\Models\User::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

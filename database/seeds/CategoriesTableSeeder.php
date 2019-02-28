@@ -12,10 +12,10 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        \Tenant::setTenant(Company::find(1));
+        \Tenant::setTenant(Company::find(2));
         factory(\App\Models\Category::class, 50)->create();
 
-        \Tenant::setTenant(Company::find(2));
+        \Tenant::setTenant(Company::find(3));
         factory(\App\Models\Category::class, 50)->create();
     }
 }
