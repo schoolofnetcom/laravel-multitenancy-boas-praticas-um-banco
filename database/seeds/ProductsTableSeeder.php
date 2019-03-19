@@ -14,11 +14,11 @@ class ProductsTableSeeder extends Seeder
     {
         \Tenant::setTenant(null);
         $categories = \App\Models\Category::all();
-        factory(Product::class, 100)
+        factory(Product::class, 300)
             ->make()
             ->each(function (Product $product) use ($categories) {
-                $tenantId = rand(2, 3);
-                $category = $categories->where('company_id', $tenantId)->random();
+                $tenantId = rand(1, 3);
+                $category = $categories->where(\Tenant::getTenantField(), $tenantId)->random();
                 $product->category_id = $category->id; //2
                 $product->company_id = $tenantId;  //1
                 $product->save();

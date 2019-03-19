@@ -2,17 +2,17 @@
 
 @section('content')
     <h3>Ver produto</h3>
-    <a class="btn btn-primary" href="{{ route('app.products.edit',['category' => $product->id]) }}">Editar</a>
-    <a class="btn btn-danger" href="{{ route('app.products.destroy',['category' => $product->id]) }}"
+    <a class="btn btn-primary" href="{{ route('app.products.edit',['category' => $product->uuid]) }}">Editar</a>
+    <a class="btn btn-danger" href="{{ route('app.products.destroy',['category' => $product->uuid]) }}"
        onclick="event.preventDefault();if(confirm('Deseja excluir este item?')){document.getElementById('form-delete').submit();}">Excluir</a>
-    {{Form::open(['route' => ['app.products.destroy',$product->id],'method' => 'DELETE', 'id' => 'form-delete'])}}
+    {{Form::open(['route' => ['app.products.destroy',$product->uuid],'method' => 'DELETE', 'id' => 'form-delete'])}}
     {{Form::close()}}
     <br/><br/>
     <table class="table table-bordered">
         <tbody>
         <tr>
             <th scope="row">ID</th>
-            <td>{{$product->id}}</td>
+            <td>{{$product->uuid}}</td>
         </tr>
         <tr>
             <th scope="row">Nome</th>

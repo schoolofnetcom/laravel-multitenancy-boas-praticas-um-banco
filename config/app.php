@@ -219,6 +219,7 @@ return [
         'Route' => Illuminate\Support\Facades\Route::class,
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Section' => \App\Section\SectionFacade::class,
+        'SectionGuard' => \App\Listeners\SectionGuardFacade::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Tenant' => \App\Tenant\TenantFacade::class,

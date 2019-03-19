@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateUserablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid')->index();
-            $table->string('name');
-            $table->tenant();
-            $table->timestamps();
+        Schema::create('userables', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->morphs('userable'); //nullableMorphs
         });
     }
 
@@ -29,6 +26,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('userables');
     }
 }

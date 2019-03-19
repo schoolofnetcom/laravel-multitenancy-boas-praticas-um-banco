@@ -3,28 +3,26 @@
 namespace App\Tenant;
 
 
-use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
 
 trait TenantModels
 {
 
-    protected static function boot()
+    protected static function bootTenantModels()
     {
-        parent::boot();
-
         static::addGlobalScope(new TenantScope());
 
         static::creating(function (Model $obj) {
-            $company = \Tenant::getTenant();
-            if($company){
-                $obj->company_id = $company->id;
+            $tenantObj = \Tenant::getTenant();
+            if ($tenantObj) {
+                $obj->{\Tenant::getTenantField()} = $tenantObj->id;
             }
         });
     }
 
-    public function company(){
-        return $this->belongsTo(Company::class);
+    public function tenant() //company tenant_id
+    {
+        return $this->belongsTo(\Tenant::getTenantModel(), \Tenant::getTenantField());
     }
 }
 

@@ -14,12 +14,13 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $self = $this;
+        \Tenant::setTenant(Company::find(1));
         factory(\App\Models\User::class, 1)
             ->make([
                 'email' => 'admin@user.com',
             ])->each(function ($user) use($self){
-                \App\Models\Admin::createUser([
-                    'user' => $user->toArray() + ['password' => $self->password]
+                \App\Models\Admin::createUserAndTenant([
+                    'user' => $self->userToArray($user)
                 ]);
             });
 
@@ -29,7 +30,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user1@user.com',
             ])->each(function ($user) use($self){
                 \App\Models\UserTenant::createUser([
-                    'user' => $user->toArray() + ['password' => $self->password]
+                    'user' => $self->userToArray($user)
                 ]);
             });
 
@@ -39,8 +40,12 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user2@user.com',
             ])->each(function ($user) use($self){
                 \App\Models\UserTenant::createUser([
-                    'user' => $user->toArray() + ['password' => $self->password]
+                    'user' => $self->userToArray($user)
                 ]);
             });
+    }
+
+    private function userToArray($user){
+        return $user->toArray() + ['password' => $this->password];
     }
 }

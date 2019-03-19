@@ -11,6 +11,6 @@ class TenantProvider extends EloquentUserProvider
     use UserProviders;
 
     public static function userOrNull($user){
-        return $user && $user->isType(UserTenant::class) ? $user : null;
+        return $user && $user->containsType(UserTenant::class) ? $user : null;
     }
 }

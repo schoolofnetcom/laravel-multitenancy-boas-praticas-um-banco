@@ -14,7 +14,7 @@
 @endcomponent
 
 @component('form._form_group',['field' => 'category_id'])
-    {{ Form::label('category_id','Categoria') }}
-    {{ Form::select('category_id',$categories->pluck('name','id'),null,['class' => 'form-control'.($errors->has('category_id')?' is-invalid':'')]) }}
+    {{ Form::label('category_uuid','Categoria') }}
+    {{ Form::select('category_uuid',$categories->pluck('name','uuid'),null,['class' => 'form-control'.($errors->has('category_id')?' is-invalid':'')]) }}
 @endcomponent
 

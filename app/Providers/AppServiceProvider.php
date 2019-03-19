@@ -22,13 +22,15 @@ class AppServiceProvider extends ServiceProvider
 
         \Validator::extend('is_admin', function ($attribute, $value, $parameters, $validator) {
             $user = User::whereEmail($value)->first();
-            return $user && $user->isType(Admin::class);
+            return $user && $user->containsType(Admin::class);
         });
 
         \Validator::extend('is_user_tenant', function ($attribute, $value, $parameters, $validator) {
             $user = User::whereEmail($value)->first();
-            return $user && $user->isType(UserTenant::class);
+            return $user && $user->containsType(UserTenant::class);
         });
+
+        \Tenant::bluePrintMacros();
     }
 
     /**

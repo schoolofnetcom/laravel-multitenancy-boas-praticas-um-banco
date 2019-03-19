@@ -20,13 +20,13 @@
         <tbody>
         @foreach($products as $product)
             <tr>
-                <td>{{ $product->id }}</td>
+                <td>{{ $product->uuid }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->category->name }}</td>
                 <td>
-                    <a href="{{route('app.products.edit',['product' => $product->id])}}">Editar</a> |
-                    <a href="{{route('app.products.show',['product' => $product->id])}}">Ver</a>
+                    <a href="{{route('app.products.edit',['product' => $product->uuid])}}">Editar</a> |
+                    <a href="{{route('app.products.show',['product' => $product->uuid])}}">Ver</a>
                 </td>
             </tr>
         @endforeach

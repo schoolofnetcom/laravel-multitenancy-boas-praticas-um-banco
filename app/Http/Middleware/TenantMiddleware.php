@@ -16,8 +16,8 @@ class TenantMiddleware
     public function handle($request, Closure $next)
     {
         $user = \Auth::user();
-        $company = $user->userable->company;
-        \Tenant::setTenant($company);
+        $tenantObj = $user->userTenant->tenant;
+        \Tenant::setTenant($tenantObj);
         return $next($request);
     }
 }

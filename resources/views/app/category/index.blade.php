@@ -18,11 +18,11 @@
         <tbody>
         @foreach($categories as $category)
             <tr>
-                <td>{{ $category->id }}</td>
+                <td>{{ $category->uuid }}</td>
                 <td>{{ $category->name }}</td>
                 <td>
-                    <a href="{{route('app.categories.edit',['category' => $category->id])}}">Editar</a> |
-                    <a href="{{route('app.categories.show',['category' => $category->id])}}">Ver</a>
+                    <a href="{{route('app.categories.edit',['category' => $category->uuid])}}">Editar</a> |
+                    <a href="{{route('app.categories.show',['category' => $category->uuid])}}">Ver</a>
                 </td>
             </tr>
         @endforeach
